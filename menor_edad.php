@@ -13,7 +13,8 @@ mediante variables de PHP.
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">   
     <link rel="stylesheet" href="css/estilos.css">
     <script src="js/script.js"></script>
-    <link rel="shortcut icon" href="childimg/child.png">
+	  <?php $img =  "childimg/child.png" ; ?>
+    <link rel="shortcut icon" href=<?php echo $img;  ?></lin>>
 	<?php $title = "Entretención para niños" ;  ?>
     <title><?php echo $title; ?></title>
   </head>
@@ -147,7 +148,10 @@ mediante variables de PHP.
     <div class="row row-cols-1 row-cols-md-3 g-4 centrado color-fondo-2">
       <div class="col">
         <div class="card">
-			<?php $imagen0 =  $carpetaimagenes . 'img0.jpg'; ?>
+			<?php 
+				$img0 = 'img0.jpg' ;
+				$imagen0 =  $carpetaimagenes . $img0 ; 
+			?>
           <img src="<?php echo $imagen0; ?>" class="card-img-top rounded" alt="...">
           <div class="card-body">
 			  <?php $titulo1 = "Thor"; ?>
@@ -160,7 +164,9 @@ mediante variables de PHP.
       </div>
       <div class="col">
         <div class="card">
-          <?php $imagen1 =  $carpetaimagenes . 'img1.jpg'; ?>
+          <?php 
+				$img1 = 'img1.jpg' ;
+				$imagen1 =  $carpetaimagenes . $img1 ; ?>
           <img src="<?php echo $imagen1; ?>" class="card-img-top rounded" alt="...">
           <div class="card-body">
 			  <?php $titulo2 = "Loki"; ?>
@@ -173,7 +179,9 @@ mediante variables de PHP.
       </div>
       <div class="col">
         <div class="card">
-          <?php $imagen2 =  $carpetaimagenes . 'img2.jpg'; ?>
+          <?php 
+			$img2 = 'img2.jpg' ;	
+			$imagen2 =  $carpetaimagenes . $img2 ; ?>
           <img src="<?php echo $imagen2; ?>" class="card-img-top rounded" alt="...">
           <div class="card-body">
 			  <?php $titulo3 = "Superman"; ?>
@@ -186,7 +194,9 @@ mediante variables de PHP.
       </div>
       <div class="col">
         <div class="card">
-          <?php $imagen3 =  $carpetaimagenes . 'img3.jpg'; ?>
+          <?php 
+				$img3 = 'img3.jpg' ;
+				$imagen3 =  $carpetaimagenes . $img3 ; ?>
           <img src="<?php echo $imagen3; ?>" class="card-img-top rounded" alt="...">
           <div class="card-body">
 			  <?php $titulo4 = "La Sirenita"; ?>
@@ -199,7 +209,9 @@ mediante variables de PHP.
       </div>
       <div class="col">
         <div class="card">
-          <?php $imagen4 =  $carpetaimagenes . 'img4.jpg'; ?>
+          <?php 
+				$img4 = 'img4.jpg' ;
+				$imagen4 =  $carpetaimagenes . $img4 ; ?>
           <img src="<?php echo $imagen4; ?>" class="card-img-top rounded" alt="...">
           <div class="card-body">
 			  <?php $titulo5 = "Iron Man"; ?>

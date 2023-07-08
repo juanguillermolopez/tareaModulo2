@@ -17,7 +17,8 @@
     <h1>El conejo Benito</h1>
 
     <div>
-      <img class="rounded" src="img/benito.png" alt="Imagen del cuento" style="max-width: 100%;">
+		<?php  $img = "img/benito.png" ?>
+      <img class="rounded" src=<?php echo $img;  ?> alt="Conejo Benito" style="max-width: 100%;">
     </div>
 
     <div class="form-group mt-4">

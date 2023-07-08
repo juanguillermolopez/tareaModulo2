@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">   
     <link rel="stylesheet" href="css/estilos.css">
     <script src="js/script.js"></script>
-    <link rel="shortcut icon" href="img/favicon.png">
+	  <?php $favicon =  "img/favicon.png"; ?>
+    <link rel="shortcut icon" href= <?php echo $favicon;  ?> >
 	<?php $title = "Star Trek Fanpage Chile" ;  ?>
     <title><?php echo $title; ?></title>
   </head>
@@ -68,7 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		  <!-- si elimmino este IMG, las demás no se muestran ni el carousel funciona.
 				entonces tengo que dejarlo aquí, aunque se repita una imagen, aunque me duela.-->
         <div class="carousel-item active">
-          <img class="d-block w-100" src="jpg/img0.jpg" >
+			<?php $img0 = "jpg/img0.jpg" ;  ?>
+          <img class="d-block w-100" src= <?php  echo $img0 ; ?> >
         </div>
 		  <!---->
 		  <?php
@@ -258,16 +260,19 @@ esto fue fácil
 -->
 	  <?php
 	  	if ($verbanner == true){ ?>
-	    	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	    	<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
 				<div class="carousel-inner">
 				  <div class="carousel-item active">
-					<img src="imgcorp/img1.jpg" alt="Imagen 1" style="width:100px;">
+					  <?php  $img1 = "imgcorp/img1.jpg"  ?>
+					<img src=<?php  echo $img1 ;  ?> alt="Imagen 1" style="width:100px;">
 				  </div>
 				  <div class="carousel-item">
-					<img src="imgcorp/img2.jpg" alt="Imagen 2" style="width:100px;">
+					  <?php  $img2 = "imgcorp/img2.jpg"  ?>
+					<img src=<?php  echo $img2 ;  ?>  alt="Imagen 2" style="width:100px;">
 				  </div>
 				  <div class="carousel-item">
-					<img src="imgcorp/img3.jpg" alt="Imagen 3" style="width:100px;">
+					  <?php  $img3 = "imgcorp/img3.jpg"  ?>
+					<img src=<?php  echo $img3 ;  ?> alt="Imagen 3" style="width:100px;">
 				  </div>
 				</div>
 				<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

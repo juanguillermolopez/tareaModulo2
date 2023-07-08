@@ -48,7 +48,9 @@ Finalmente, los textos y las imágenes son llamados desde
 variables PHP e invocadas con la función 'echo' de PHP.
 
 
-
+NOTA: no se puede ejecutar una página por separado, ya que
+siempre llevará a 'menor_edad.php' porque la variable '$edad'
+estará en 0.
 
 
 
