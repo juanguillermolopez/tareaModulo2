@@ -14,6 +14,7 @@ al controlador de PHP que se llama "procesar_formulario.php"
   <div class="container">
     <h1 class="mt-5">Bienvenido(a) a nuestra página de inicio</h1>
 
+	  <!--  envia los datos para verificar la edad   -->
     <form method="post" action="procesar_formulario.php">
       <div class="form-group">
         <label for="nombre">Nombre:</label>

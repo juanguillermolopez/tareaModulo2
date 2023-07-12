@@ -21,6 +21,7 @@
       <img class="rounded" src=<?php echo $img;  ?> alt="Conejo Benito" style="max-width: 100%;">
     </div>
 
+	  <!-- si elige un idioma, se cargan las variables de php  -->
     <div class="form-group mt-4">
       <label for="idioma">Idioma:</label>
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -33,7 +34,7 @@
     </div>
 
     <div id="cuento">
-      
+      <!--  esta traducido a ingles, español y ruso    -->
       <?php
         $idioma = isset($_POST['idioma']) ? $_POST['idioma'] : 'es';
 
