@@ -2,8 +2,12 @@
 <html>
 <head>
   <title>Un cuento para niños</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <style>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<style>
     #cuento-container {
       max-width: 800px;
       margin: 0 auto;
@@ -13,22 +17,77 @@
 </head>
 <body>
 
+	
+	
+
+    <!-- NAVBAR    -->
+    <!--
+      esta paete me fue especialmente dificil de hacer funcionar,
+      ya que casi todo los ejemplos son para bootstrap 5.3,
+      mientras que la plantilla es de bootstrap 4.0
+    -->
+      
+		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(67, 67, 254);">
+			<!-- <a class="navbar-brand" href="#">Mi Sitio</a>  -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			  <ul class="navbar-nav">
+
+				<li class="nav-item active  ">
+				  <a class="nav-link text-white" href="startrek.php">Inicio</a>
+				</li>
+
+				<li class="nav-item dropdown ">
+				  <a class="nav-link dropdown-toggle text-white " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Galería de páginas
+				  </a>
+					<!-- cada página se abre en una pestaña nueva -->
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="https://intl.startrek.com/" target="_blank">Sitio oficial de Star Trek</a>
+					<a class="dropdown-item" href="fibonacci.php" target="_blank">Serie Fibonacci</a>
+					<a class="dropdown-item" href="cuento.php" target="_blank">Un Cuento para niños</a>
+				  </div>
+				</li>
+			  </ul>
+			</div>
+		</nav>
+
+
+
+	
   <div class="container" id="cuento-container">
     <h1>El conejo Benito</h1>
 
     <div>
-		<?php  $img = "img/benito.png" ?>
-      <img class="rounded" src=<?php echo $img;  ?> alt="Conejo Benito" style="max-width: 100%;">
+		<?php  
+		// carga la imagen del conejo
+		include('coneccion.php');
+		$sql = "select imagen from info_pagina where imagen = 'benito.png' limit 1;";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result) 
+		?>
+      <img class="rounded" src=<?php echo $row['imagen'];  ?> alt="Conejo Benito" style="max-width: 100%;">
     </div>
 
+	  
 	  <!-- si elige un idioma, se cargan las variables de php  -->
     <div class="form-group mt-4">
       <label for="idioma">Idioma:</label>
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <select class="form-control" id="idioma" name="idioma" onchange="this.form.submit()">
-          <option value="es" <?php if(isset($_POST['idioma']) && $_POST['idioma'] === 'es') echo 'selected'; ?>>Español</option>
-          <option value="en" <?php if(isset($_POST['idioma']) && $_POST['idioma'] === 'en') echo 'selected'; ?>>Inglés</option>
-          <option value="ru" <?php if(isset($_POST['idioma']) && $_POST['idioma'] === 'ru') echo 'selected'; ?>>Ruso</option>
+			<?php  
+			// carga los idiomas en la lista
+			include('coneccion.php');
+			$sql = "select idioma,
+							label_idioma
+					from info_pagina limit 3;";
+			$result = mysqli_query($conn, $sql);
+			while ($row = mysqli_fetch_assoc($result)) { ?>
+				<option value=<?php echo $row['idioma'] ?> <?php if(isset($_POST['idioma']) && $_POST['idioma'] === $row['idioma']) echo 'selected'; ?>><?php echo $row['label_idioma']   ?></option>
+			<?php }
+			?>	
         </select>
       </form>
     </div>
@@ -36,55 +95,24 @@
     <div id="cuento">
       <!--  esta traducido a ingles, español y ruso    -->
       <?php
-        $idioma = isset($_POST['idioma']) ? $_POST['idioma'] : 'es';
-
-        if ($idioma === 'es') {
-          echo '<p><h1>El pequeño conejito aventurero</h1><br>
-
-			Había una vez un pequeño conejito llamado Benito. Benito vivía en un bosque mágico rodeado de árboles altos y flores coloridas. Un día, Benito decidió explorar más allá de su madriguera y descubrir nuevas aventuras.
-
-			Con sus largas orejas y saltitos rápidos, Benito se adentró en el bosque. Pasó por arroyos cristalinos y se encontró con pájaros cantores. Pero de repente, oyó un ruido extraño. Siguió el sonido y encontró a una tortuguita perdida. Benito la ayudó a regresar a su hogar y se hicieron amigos para siempre.
-
-			Juntos, Benito y la tortuguita exploraron el bosque y vivieron muchas aventuras emocionantes. Descubrieron un lago secreto, construyeron una casita en un árbol y hasta encontraron un tesoro escondido. Benito aprendió que la amistad y la valentía hacen que la vida sea aún más maravillosa.</p>';
-          echo '<p>¡Y así, Benito y la tortuguita vivieron felices para siempre, compartiendo risas y nuevas travesuras en el mágico bosque!<br>
-		  
-		  ¡Fin!" </p>';
-			
-			
-			
-			
-        } elseif ($idioma === 'en') {
-          echo '<p><h1>The little adventurous bunny</h1><br>
-
-			Once upon a time there was a little bunny named Benito. Benito lived in a magical forest surrounded by tall trees and colorful flowers. One day, Benito decided to explore beyond his burrow and discover new adventures.<br>
-
-			With his long ears and quick hops, Benito entered the forest. He passed through crystal clear streams and met songbirds. But suddenly, he heard a strange noise. He followed the sound and found a lost baby turtle. Benito helped her return to her home and they became friends forever.<br>
-
-			Together, Benito and the little turtle explored the forest and had many exciting adventures. They discovered a secret lake, built a treehouse, and even found hidden treasure. Benito learned that friendship and courage make life even more wonderful.<br>
-			
-			</p>';
-          echo '<p>And so, Benito and the little turtle lived happily ever after, sharing laughter and new mischief in the magical forest!<br>
-
-			End!</p>';
-			
-			
-			
-			
-        } elseif ($idioma === 'ru') {
-          echo '<p><h1>Маленький предприимчивый кролик</h1><br>
-
-			Жил-был маленький кролик по имени Бенито. Бенито жил в волшебном лесу, окруженном высокими деревьями и яркими цветами. Однажды Бенито решил отправиться за пределы своей норы и открыть для себя новые приключения.<br>
-
-			Со своими длинными ушами и быстрыми прыжками Бенито вошел в лес. Он миновал кристально чистые ручьи и был встречен певчими птицами. Но вдруг он услышал странный шум. Он пошел на звук и нашел потерявшуюся черепаху. Бенито помог ей вернуться домой, и они навсегда подружились.<br>
-
-			Вместе Бенито и маленькая черепашка исследовали лес и пережили множество захватывающих приключений. Они обнаружили секретное озеро, построили дом на дереве и даже нашли спрятанные сокровища. Бенито понял, что дружба и мужество делают жизнь еще прекраснее.<br></p>';
-			
-			
-			
-          echo '<p>Так и жили Бенито и маленькая черепашка долго и счастливо, делясь смехом и новыми проказами в волшебном лесу!<br>
-
-			Конец!</p>';
-        }
+		// si no hay un idioma seleccionado,  por defecto es español
+		$idioma = isset($_POST['idioma']) ? $_POST['idioma'] : 'es';
+		
+		// carga el texto traducido
+			include('coneccion.php');
+			$sql = "select titulo_cuento,
+							relato,
+							fin_cuento,
+							idioma
+					from info_pagina limit 3;";
+			$result = mysqli_query($conn, $sql);
+			while ($row = mysqli_fetch_assoc($result)) { 
+				if ($idioma === $row['idioma']) {
+				  	echo '<p><h1>'.$row['titulo_cuento'].'</h1><br>'.
+				   	$row['relato'] . '</p>';
+					echo '<p>' . $row['fin_cuento'] . '</p>';
+				}
+			}
       ?>
     </div>
   </div>
